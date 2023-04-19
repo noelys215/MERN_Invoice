@@ -22,9 +22,11 @@ const userSchema = new Schema(
 			unique: true,
 			trim: true,
 			validate: {
-				validator: (value) => /^[A-z][A-z0-9-_]{3,23}$/.test(value),
+				validator: function (value) {
+					return /^[A-z][A-z0-9-_]{3,23}$/.test(value);
+				},
 				message:
-					'Username must be alphanumeric, without special characters; Hyphens and underscores allowed.',
+					'username must be alphanumeric, without special characters.Hyphens and underscores allowed',
 			},
 		},
 
@@ -34,7 +36,7 @@ const userSchema = new Schema(
 			trim: true,
 			validate: [
 				validator.isAlphanumeric,
-				'First Name may only have Alphanumeric values. No special characters.',
+				'First Name can only have Alphanumeric values. No special characters allowed',
 			],
 		},
 
@@ -44,7 +46,7 @@ const userSchema = new Schema(
 			trim: true,
 			validate: [
 				validator.isAlphanumeric,
-				'Last Name may only have Alphanumeric values. No special characters.',
+				'Last Name can only have Alphanumeric values. No special characters allowed',
 			],
 		},
 		password: {
@@ -52,13 +54,15 @@ const userSchema = new Schema(
 			select: false,
 			validate: [
 				validator.isStrongPassword,
-				'Password must be at least 8 characters long, with at least 1 uppercase and lowercase letter and min 1 symbol',
+				'Password must be at least 8 characters long, with at least 1 uppercase and lowercase letters and at least 1 symbol',
 			],
 		},
 		passwordConfirm: {
 			type: String,
 			validate: {
-				validator: (value) => value === this.password,
+				validator: function (value) {
+					return value === this.password;
+				},
 				message: 'Passwords do not match',
 			},
 		},
@@ -99,7 +103,7 @@ const userSchema = new Schema(
 	}
 );
 
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {
 	if (this.roles.length === 0) {
 		this.roles.push(USER);
 		next();
@@ -107,7 +111,9 @@ userSchema.pre('save', async (next) => {
 });
 
 userSchema.pre('save', async function (next) {
-	if (!this.isModified('password')) return next();
+	if (!this.isModified('password')) {
+		return next();
+	}
 
 	const salt = await bcrypt.genSalt(10);
 	this.password = await bcrypt.hash(this.password, salt);
@@ -117,7 +123,9 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.pre('save', async function (next) {
-	if (!this.isModified('password') || this.isNew) return next();
+	if (!this.isModified('password') || this.isNew) {
+		return next();
+	}
 
 	this.passwordChangedAt = Date.now();
 	next();

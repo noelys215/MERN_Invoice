@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
 };
 
 const notFound = (req, res, next) => {
-	const error = new Error(`Route does not exist - ${req.originalUrl}`);
+	const error = new Error(`That route does not exist - ${req.originalUrl}`);
 	res.status(404);
 	next(error);
 };

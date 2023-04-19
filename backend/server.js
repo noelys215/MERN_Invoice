@@ -3,10 +3,12 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import express from 'express';
 import morgan from 'morgan';
+import mongoSanitize from 'express-mongo-sanitize';
+
 import connectionToDB from './config/connectDB.js';
 import { morganMiddleware, systemLogs } from './utils/Logger.js';
-import mongoSanitize from 'express-mongo-sanitize';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
+import authRoutes from './routes/authRoutes.js';
 
 await connectionToDB();
 const app = express();
@@ -24,6 +26,8 @@ app.use(mongoSanitize());
 app.use(morganMiddleware);
 
 app.get('/api/v1/test', (req, res) => res.json({ Hi: 'Welcome to the invoice app.' }));
+
+app.use('/api/v1/auth', authRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
