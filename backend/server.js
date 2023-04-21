@@ -4,11 +4,14 @@ import 'dotenv/config';
 import express from 'express';
 import morgan from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
-
 import connectionToDB from './config/connectDB.js';
+import { apiLimiter } from './middleware/apiLimiter.js';
 import { morganMiddleware, systemLogs } from './utils/Logger.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
+
+/* Route Imports */
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 await connectionToDB();
 const app = express();
@@ -27,7 +30,9 @@ app.use(morganMiddleware);
 
 app.get('/api/v1/test', (req, res) => res.json({ Hi: 'Welcome to the invoice app.' }));
 
+/* Routes */
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/user', apiLimiter, userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
