@@ -62,6 +62,7 @@ const resetPasswordRequest = asyncHandler(async (req, res) => {
 const resetPassword = asyncHandler(async (req, res) => {
 	const { password, passwordConfirm, userId, emailToken } = req.body;
 
+	/* Error/Validation Checks */
 	if (!password) {
 		res.status(400);
 		throw new Error('A password is required');
