@@ -16,7 +16,7 @@ const checkRole = (...allowedRoles) => {
 
 		const roleFound = req.roles
 			.map((role) => rolesArray.includes(role))
-			.find((val) => value === true);
+			.find((value) => value === true);
 
 		if (!roleFound) {
 			res.status(401);
