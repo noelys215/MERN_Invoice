@@ -24,9 +24,7 @@ export const Footer = () => {
 					align="center"
 					component="p"
 					sx={{ color: '#07f011' }}>
-					<FaMoneyBillWave />
-					More Money, Less Problems.
-					<FaMoneyBillWave />
+					<FaMoneyBillWave /> More Money, Less Problems. <FaMoneyBillWave />
 				</Typography>
 				<Copyright />
 			</Box>
