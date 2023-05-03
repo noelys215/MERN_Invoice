@@ -9,6 +9,7 @@ import { Footer } from './components/Footer';
 import { NotFound } from './components/NotFound';
 import { ToastContainer } from 'react-toastify';
 import { RegisterPage } from './features/auth/pages/RegisterPage';
+import { VerifiedPage } from './features/auth/pages/VerifiedPage';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -19,6 +20,7 @@ export const App = () => {
 				<Route path="/" element={<Layout />}>
 					<Route index element={<HomePage />} />
 					<Route path="register" element={<RegisterPage />} />
+					<Route path="auth/verify" element={<VerifiedPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
