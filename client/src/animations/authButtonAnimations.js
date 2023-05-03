@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export const authButtonAnimations = ({ children, type }) => {
+export const AuthButtonAnimation = ({ children, type }) => {
 	switch (type) {
 		default:
 			return (

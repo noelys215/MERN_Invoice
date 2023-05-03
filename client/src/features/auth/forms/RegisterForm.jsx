@@ -21,9 +21,9 @@ import {
 	Typography,
 } from '@mui/material';
 import { Formik } from 'formik';
-import AuthButtonAnimation from '../../../animations/authButtonAnimations';
-import Spinner from '../../../components/Spinner';
-import useTitle from '../../../hooks/useTitle';
+import { Spinner } from '../../../components/Spinner';
+import { useTitle } from '../../../hooks/useTitle';
+import { AuthButtonAnimation } from '../../../animations/authButtonAnimations';
 
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 
