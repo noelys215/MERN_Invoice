@@ -10,6 +10,7 @@ import { NotFound } from './components/NotFound';
 import { ToastContainer } from 'react-toastify';
 import { RegisterPage } from './features/auth/pages/RegisterPage';
 import { VerifiedPage } from './features/auth/pages/VerifiedPage';
+import { LoginPage } from './features/auth/pages/LoginPage';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -21,6 +22,7 @@ export const App = () => {
 					<Route index element={<HomePage />} />
 					<Route path="register" element={<RegisterPage />} />
 					<Route path="auth/verify" element={<VerifiedPage />} />
+					<Route path="login" element={<LoginPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
