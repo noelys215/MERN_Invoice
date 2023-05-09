@@ -12,6 +12,7 @@ import { isExpired } from 'react-jwt';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../features/auth/authSlice';
+import { ProfileInfo } from './ProfileInfo';
 
 const drawerWidth = 240;
 
@@ -121,7 +122,9 @@ export const AuthNav = () => {
 						</IconButton>
 						{/* <Logo /> */}
 					</Toolbar>
-					<Box>{/* <ProfileInfo user={user} /> */}</Box>
+					<Box>
+						<ProfileInfo user={user} />
+					</Box>
 				</Stack>
 			</AppBar>
 			<Drawer variant="permanent" open={open}>
