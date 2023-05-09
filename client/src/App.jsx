@@ -14,6 +14,7 @@ import { LoginPage } from './features/auth/pages/LoginPage';
 import { Navbar } from './components/Navbar';
 import { useSelector } from 'react-redux';
 import { ResendEmailTokenPage } from './features/auth/pages/ResendEmailTokenPage';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
