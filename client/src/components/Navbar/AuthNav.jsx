@@ -13,6 +13,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../../features/auth/authSlice';
 import { ProfileInfo } from './ProfileInfo';
+import { Logo } from './Logo';
+import { MenuList } from './MenuList';
 
 const drawerWidth = 240;
 
@@ -120,7 +122,7 @@ export const AuthNav = () => {
 							}}>
 							<MenuIcon fontSize="large" />
 						</IconButton>
-						{/* <Logo /> */}
+						<Logo />
 					</Toolbar>
 					<Box>
 						<ProfileInfo user={user} />
@@ -138,7 +140,7 @@ export const AuthNav = () => {
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
-				{/* <MenuList /> */}
+				<MenuList />
 			</Drawer>
 		</Box>
 	);

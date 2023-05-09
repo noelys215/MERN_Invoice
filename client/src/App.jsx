@@ -11,12 +11,16 @@ import { ToastContainer } from 'react-toastify';
 import { RegisterPage } from './features/auth/pages/RegisterPage';
 import { VerifiedPage } from './features/auth/pages/VerifiedPage';
 import { LoginPage } from './features/auth/pages/LoginPage';
+import { Navbar } from './components/Navbar';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
+	const { user } = useSelector((state) => state.auth);
 	return (
 		<ThemeProvider theme={customTheme}>
 			<CssBaseline />
+			{user && <Navbar />}
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<HomePage />} />
