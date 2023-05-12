@@ -15,6 +15,8 @@ import { Navbar } from './components/Navbar';
 import { useSelector } from 'react-redux';
 import { ResendEmailTokenPage } from './features/auth/pages/ResendEmailTokenPage';
 import 'react-toastify/dist/ReactToastify.css';
+import { PasswordResetRequestPage } from './features/auth/pages/PasswordResetRequestPage';
+import { PasswordResetPage } from './features/auth/pages/PasswordResetPage';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -30,6 +32,8 @@ export const App = () => {
 					<Route path="auth/verify" element={<VerifiedPage />} />
 					<Route path="login" element={<LoginPage />} />
 					<Route path="resend" element={<ResendEmailTokenPage />} />
+					<Route path="reset_password_request" element={<PasswordResetRequestPage />} />
+					<Route path="auth/reset_password" element={<PasswordResetPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>

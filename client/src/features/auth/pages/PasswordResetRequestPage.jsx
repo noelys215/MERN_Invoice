@@ -39,20 +39,6 @@ export const PasswordResetRequestPage = () => {
 		}
 	}, [data, isSuccess, navigate]);
 
-	/* HANDLERS */
-	const handleSubmit = async (values, { setStatus, setSubmitting }) => {
-		try {
-			await passwordResetRequest(values).unwrap();
-			setStatus({ success: true });
-			setSubmitting(false);
-		} catch (err) {
-			const message = err.data.message;
-			toast.error(message);
-			setStatus({ success: false });
-			setSubmitting(false);
-		}
-	};
-
 	return (
 		<>
 			<Formik
@@ -63,7 +49,18 @@ export const PasswordResetRequestPage = () => {
 						.max(255)
 						.required('Email is required'),
 				})}
-				onSubmit={handleSubmit}>
+				onSubmit={async (values, { setStatus, setSubmitting }) => {
+					try {
+						await passwordResetRequest(values).unwrap();
+						setStatus({ success: true });
+						setSubmitting(false);
+					} catch (err) {
+						const message = err.data.message;
+						toast.error(message);
+						setStatus({ success: false });
+						setSubmitting(false);
+					}
+				}}>
 				{({
 					errors,
 					handleBlur,
@@ -115,7 +112,7 @@ export const PasswordResetRequestPage = () => {
 									<Spinner />
 								) : (
 									<Grid container>
-										{/* EMAIL */}
+										{/* email */}
 										<Grid item xs={12}>
 											<Stack spacing={1}>
 												<InputLabel htmlFor="email-signup">
@@ -142,7 +139,7 @@ export const PasswordResetRequestPage = () => {
 												)}
 											</Stack>
 										</Grid>
-										{/* BUTTON */}
+										{/* button */}
 										<Grid item xs={12}>
 											<Button
 												sx={{ mt: 3, mb: 2 }}
@@ -156,7 +153,7 @@ export const PasswordResetRequestPage = () => {
 												Send Password Reset Email
 											</Button>
 										</Grid>
-										{/* GO BACK */}
+										{/* Go back button */}
 										<Grid item xs={12}>
 											<Button
 												variant="contained"
