@@ -21,7 +21,7 @@ const resetPasswordRequest = asyncHandler(async (req, res) => {
 
 	if (!existingUser) {
 		res.status(400);
-		throw new Error('Email is not associated with any account');
+		throw new Error('Email not associated with any account');
 	}
 
 	let verificationToken = await VerificationToken.findOne({ _userId: existingUser._id });
@@ -50,7 +50,7 @@ const resetPasswordRequest = asyncHandler(async (req, res) => {
 
 		res.status(200).json({
 			success: true,
-			message: `Hey ${existingUser.firstName}, an email has been sent to your account with the password reset link`,
+			message: `Hey ${existingUser.firstName}, an email has been sent with the password reset link.`,
 		});
 	}
 });
@@ -87,7 +87,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 	if (!passwordResetToken) {
 		res.status(400);
-		throw new Error('Your token is either invalid/expired. Try resetting  again');
+		throw new Error('Token invalid/expired; Try again');
 	}
 
 	const user = await User.findById({
@@ -111,7 +111,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 		res.json({
 			success: true,
-			message: `Hey ${user.firstName}, password was successfully reset. A confirmation email has been sent.`,
+			message: `Hey ${user.firstName}, password successfully reset, confirmation email has been sent.`,
 		});
 	}
 });
