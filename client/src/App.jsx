@@ -17,6 +17,10 @@ import { ResendEmailTokenPage } from './features/auth/pages/ResendEmailTokenPage
 import 'react-toastify/dist/ReactToastify.css';
 import { PasswordResetRequestPage } from './features/auth/pages/PasswordResetRequestPage';
 import { PasswordResetPage } from './features/auth/pages/PasswordResetPage';
+import { ROLES } from './config/roles';
+import { UsersList } from './features/users/pages/UsersListPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { AuthRequired } from './components/AuthRequired';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -34,6 +38,16 @@ export const App = () => {
 					<Route path="resend" element={<ResendEmailTokenPage />} />
 					<Route path="reset_password_request" element={<PasswordResetRequestPage />} />
 					<Route path="auth/reset_password" element={<PasswordResetPage />} />
+					{/* Private Routes - Users */}
+					<Route element={<AuthRequired allowedRoles={[ROLES.User]} />}>
+						<Route path="dashboard" element={<DashboardPage />} />
+					</Route>
+
+					{/* Private Routes - Admin Users only */}
+					<Route element={<AuthRequired allowedRoles={[ROLES.Admin]} />}>
+						<Route path="users" element={<UsersList />} />
+					</Route>
+
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
