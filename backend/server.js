@@ -8,6 +8,8 @@ import connectionToDB from './config/connectDB.js';
 import { apiLimiter } from './middleware/apiLimiter.js';
 import { morganMiddleware, systemLogs } from './utils/Logger.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
+import passport from 'passport';
+import googleAuth from './config/passportSetup.js';
 
 /* Route Imports */
 import authRoutes from './routes/authRoutes.js';
@@ -21,6 +23,9 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
+
+app.use(passport.initialize());
+googleAuth();
 
 app.use(cookieParser());
 

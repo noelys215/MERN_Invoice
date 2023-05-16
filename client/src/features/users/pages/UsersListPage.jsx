@@ -39,8 +39,7 @@ export const UsersList = () => {
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	/* Hooks */
 	const { data, isLoading, isSuccess, isError, error } = useGetAllUsersQuery('allUsersList', {
-		pollingInterval: 5000,
-		// pollingInterval: 60000,
+		pollingInterval: 60000,
 		refetchOnFocus: true,
 		refetchOnMountOrArgChange: true,
 	});
