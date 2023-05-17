@@ -33,3 +33,4 @@ export const { logOut, logIn } = authSlice.actions;
 export default authSlice.reducer;
 
 export const selectCurrentUserToken = (state) => state.auth.user?.accessToken;
+export const selectCurrentUserGoogleToken = (state) => state.auth?.googleToken;
