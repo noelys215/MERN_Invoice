@@ -21,6 +21,8 @@ import { ROLES } from './config/roles';
 import { UsersList } from './features/users/pages/UsersListPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AuthRequired } from './components/AuthRequired';
+import { ProfilePage } from './features/users/pages/ProfilePage';
+import { EditProfileForm } from './features/users/pages/EditProfileForm';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -40,6 +42,8 @@ export const App = () => {
 					<Route path="auth/reset_password" element={<PasswordResetPage />} />
 					{/* Private Routes - Users */}
 					<Route element={<AuthRequired allowedRoles={[ROLES.User]} />}>
+						<Route path="profile" element={<ProfilePage />} />
+						<Route path="edit-profile" element={<EditProfileForm />} />
 						<Route path="dashboard" element={<DashboardPage />} />
 					</Route>
 
