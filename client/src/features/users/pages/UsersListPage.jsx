@@ -30,7 +30,11 @@ import { StyledTableCell } from '../../../components/StyledTableCell';
 import { StyledTableRow } from '../../../components/StyledTableRow';
 import { TablePaginationActions } from '../../../components/TablePaginationActions';
 import { useTitle } from '../../../hooks/useTitle';
-import { useGetAllUsersQuery } from '../usersApiSlice';
+import {
+	useDeactivateUserMutation,
+	useDeleteUserMutation,
+	useGetAllUsersQuery,
+} from '../usersApiSlice';
 
 export const UsersList = () => {
 	useTitle('All Users - MERN Invoice');
@@ -47,11 +51,36 @@ export const UsersList = () => {
 	const rows = data?.users;
 	const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows?.length) : 0;
 
+	const [deleteUser] = useDeleteUserMutation();
+	const [deactivateUser] = useDeactivateUserMutation();
+
 	/* Handlers */
 	const handleChangePage = (event, newPage) => setPage(newPage);
 	const handleChangeRowsPerPage = (event) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
+	};
+
+	const deactivateUserHandler = async (id) => {
+		try {
+			await deactivateUser(id).unwrap();
+			toast.success('User deactivated');
+		} catch (err) {
+			const message = err.data.message;
+			toast.error(message);
+		}
+	};
+
+	const deleteHandler = async (id) => {
+		try {
+			if (window.confirm('Are you sure you want to delete this user?')) {
+				await deleteUser(id).unwrap();
+				toast.success('User deleted successfully');
+			}
+		} catch (err) {
+			const message = err.data.message;
+			toast.error(message);
+		}
 	};
 
 	useEffect(() => {
@@ -158,11 +187,9 @@ export const UsersList = () => {
 													<Checkbox
 														color="success"
 														checked={row?.active}
-														// onChange={() =>
-														// 	deactivateUserHandler(
-														// 		row._id
-														// 	)
-														// }
+														onChange={() =>
+															deactivateUserHandler(row._id)
+														}
 													/>
 												</CustomTooltip>
 											</StyledTableCell>
@@ -174,11 +201,7 @@ export const UsersList = () => {
 														sx={{
 															cursor: 'pointer',
 														}}
-														// onClick={() =>
-														// 	deleteHandler(
-														// 		row._id
-														// 	)
-														// }
+														onClick={() => deleteHandler(row._id)}
 													/>
 												</Box>
 											</StyledTableCell>
