@@ -238,7 +238,7 @@ export const CustomerCreateForm = () => {
 														name="address"
 														onBlur={handleBlur}
 														onChange={handleChange}
-														placeholder="101 James Doolittle Blvd"
+														placeholder="123 Main Street E"
 														inputProps={{}}
 													/>
 													{touched.address && errors.address && (
@@ -261,7 +261,7 @@ export const CustomerCreateForm = () => {
 														name="city"
 														onBlur={handleBlur}
 														onChange={handleChange}
-														placeholder="e.g Nairobi"
+														placeholder="e.g Spain"
 														inputProps={{}}
 													/>
 													{touched.city && errors.city && (
