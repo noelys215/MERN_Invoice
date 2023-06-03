@@ -23,6 +23,10 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AuthRequired } from './components/AuthRequired';
 import { ProfilePage } from './features/users/pages/ProfilePage';
 import { EditProfileForm } from './features/users/pages/EditProfileForm';
+import { CustomersPage } from './features/customers/pages/CustomersPage';
+import { CustomerCreateForm } from './features/customers/pages/CustomerCreateForm';
+import { SingleCustomerPage } from './features/customers/pages/SingleCustomerPage';
+import { CustomerEditForm } from './features/customers/pages/CustomerEditForm';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -44,6 +48,10 @@ export const App = () => {
 					<Route element={<AuthRequired allowedRoles={[ROLES.User]} />}>
 						<Route path="profile" element={<ProfilePage />} />
 						<Route path="edit-profile" element={<EditProfileForm />} />
+						<Route path="customers" element={<CustomersPage />} />
+						<Route path="create-customer" element={<CustomerCreateForm />} />
+						<Route path="single-customer/:custId" element={<SingleCustomerPage />} />
+						<Route path="edit-customer/:custId" element={<CustomerEditForm />} />
 						<Route path="dashboard" element={<DashboardPage />} />
 					</Route>
 
