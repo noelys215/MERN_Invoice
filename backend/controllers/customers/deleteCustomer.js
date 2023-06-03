@@ -17,7 +17,7 @@ const deleteCustomer = asyncHandler(async (req, res) => {
 		throw new Error(`You're not authorized to delete this customer's information.`);
 	}
 
-	await customer.delete();
+	await customer.deleteOne();
 
 	res.json({ success: true, message: 'Your customer has been deleted' });
 });

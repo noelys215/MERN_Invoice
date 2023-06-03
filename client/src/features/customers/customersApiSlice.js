@@ -38,8 +38,8 @@ export const customersApiSlice = baseApiSlice.injectEndpoints({
 
 export const {
 	useGetAllUserCustomersQuery,
-	useCreateCustomerMutation,
 	useGetSingleCustomerQuery,
+	useCreateCustomerMutation,
 	useUpdateCustomerInfoMutation,
 	useDeleteCustomerMutation,
 } = customersApiSlice;
