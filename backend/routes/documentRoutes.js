@@ -5,6 +5,7 @@ import getAllUserDocuments from '../controllers/documents/getAllUserDocuments.js
 import getSingleUserDocument from '../controllers/documents/getSingleUserDocument.js';
 import updateDocument from '../controllers/documents/updateDocument.js';
 import checkAuth from '../middleware/checkAuthMiddleware.js';
+import createDocumentPayment from '../controllers/documents/createPayment.js';
 import { generatePDF, getPDF, sendDocument } from '../controllers/documents/generatePDF.js';
 
 const router = express.Router();
@@ -14,6 +15,9 @@ router.route('/create').post(checkAuth, createDocument);
 
 /* get all of a users documents @ /api/v1/document/all */
 router.route('/all').get(checkAuth, getAllUserDocuments);
+
+/* create document payment */
+router.route('/:id/payment').post(checkAuth, createDocumentPayment);
 
 /* get,update and delete document @ /api/v1/document/:id */
 router
