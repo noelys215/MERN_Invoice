@@ -29,6 +29,7 @@ import { SingleCustomerPage } from './features/customers/pages/SingleCustomerPag
 import { CustomerEditForm } from './features/customers/pages/CustomerEditForm';
 import { DocumentsPage } from './features/documents/pages/DocumentsPage';
 import { DocCreateEditForm } from './features/documents/pages/DocCreateEditForm';
+import { SingleDocumentPage } from './features/documents/pages/SingleDocumentPage';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
@@ -57,6 +58,7 @@ export const App = () => {
 						<Route path="documents" element={<DocumentsPage />} />
 						<Route path="create-doc" element={<DocCreateEditForm />} />
 						<Route path="edit-doc/:id" element={<DocCreateEditForm />} />
+						<Route path="document/:id" element={<SingleDocumentPage />} />
 
 						<Route path="dashboard" element={<DashboardPage />} />
 					</Route>
