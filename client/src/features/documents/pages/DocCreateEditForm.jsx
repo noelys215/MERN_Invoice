@@ -50,7 +50,7 @@ import {
 
 import { useGetAllUserCustomersQuery } from '../../customers/customersApiSlice';
 import { addCurrencyCommas } from './components/addCurrencyCommas';
-import DocumentType from './components/DocumentType';
+import { DocumentType } from './components/DocumentType';
 import { docInitialState, itemsInitialState } from './initialState';
 
 const StyledItemButton = styled(Button)({
