@@ -59,8 +59,180 @@ export const DashboardPage = () => {
 	const notPaid = documents?.myDocuments?.filter((doc) => doc.status === 'Not Paid');
 
 	return (
-		<div>
-			<></>
-		</div>
+		<Container component="main" maxWidth="md" sx={{ mt: 10 }}>
+			<CssBaseline />
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}>
+				<DashboardTwoToneIcon sx={{ fontSize: 70 }} />
+				<Typography variant="h2">My Dashboard</Typography>
+			</Box>
+			<StyledDivider />
+			<Box>
+				<Grid container spacing={2}>
+					{/* Customers */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<SentimentSatisfiedAltTwoToneIcon
+								color="primary"
+								sx={{ fontSize: 30 }}
+							/>
+							<Typography variant="h5" sx={{ marginLeft: 1 }}>
+								{customers?.totalCustomers}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Total Customers</Typography>
+					</StyledDashboardGrid>
+					{/* Total Documents */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<DifferenceTwoToneIcon color="success" sx={{ fontSize: 30 }} />
+							<Typography variant="h5" sx={{ marginLeft: 1 }}>
+								{documents?.totalDocuments}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Total Documents</Typography>
+					</StyledDashboardGrid>
+					{/* Total Amount */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<SavingsTwoToneIcon color="secondary" sx={{ fontSize: 30 }} />
+							<Typography variant="h5" sx={{ marginLeft: 1 }}>
+								{addCurrencyCommas(totalAmount.toFixed(2))}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Expected Income</Typography>
+					</StyledDashboardGrid>
+					{/* Total Paid */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<PaidTwoToneIcon sx={{ fontSize: 30, color: '#ff9100' }} />
+							<Typography variant="h6" sx={{ marginLeft: 1 }}>
+								{addCurrencyCommas(totalRecieved)}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Cash Received</Typography>
+					</StyledDashboardGrid>
+					{/* Pending Amount */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<SentimentDissatisfiedTwoToneIcon
+								sx={{ fontSize: 30, color: '#ff3d00' }}
+							/>
+							<Typography variant="h5" sx={{ marginLeft: 1 }}>
+								{addCurrencyCommas((totalAmount - totalRecieved).toFixed(2))}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Cash Pending</Typography>
+					</StyledDashboardGrid>
+					{/* Fully Paid */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<DoneAllTwoToneIcon sx={{ fontSize: 30, color: '#651fff' }} />
+							<Typography variant="h6" sx={{ marginLeft: 1 }}>
+								{fullyPaid?.length}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Total Paid Docs</Typography>
+					</StyledDashboardGrid>
+					{/* Partially Paid */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<CloseTwoToneIcon sx={{ fontSize: 30, color: '#2196f3' }} />
+							<Typography variant="h6" sx={{ marginLeft: 1 }}>
+								{partiallyPaid?.length}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Not Fully Paid</Typography>
+					</StyledDashboardGrid>
+					{/* Overdue */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<AlarmTwoToneIcon sx={{ fontSize: 30, color: '#006064' }} />
+							<Typography variant="h6" sx={{ marginLeft: 1 }}>
+								{docOverDue?.length}
+							</Typography>
+						</Box>
+						<Typography variant="h6">Overdue</Typography>
+					</StyledDashboardGrid>
+					{/* Unpaid */}
+					<StyledDashboardGrid>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'row',
+								justifyContent: 'center',
+							}}>
+							<SentimentDissatisfiedTwoToneIcon
+								sx={{ fontSize: 30, color: '#455a64' }}
+							/>
+							<Typography variant="h6" sx={{ marginLeft: 1 }}>
+								{notPaid?.length}
+							</Typography>
+						</Box>
+						<Typography variant="h6">UnPaid</Typography>
+					</StyledDashboardGrid>
+				</Grid>
+			</Box>
+			<Box
+				sx={{
+					mt: 3,
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}>
+				<HistoryEduTwoToneIcon sx={{ fontSize: 60 }} />
+				<Typography variant="h3">
+					{paymentHistory?.length ? 'Payment History' : 'No Payments as of now'}
+				</Typography>
+			</Box>
+			<StyledDivider />
+			<PaymentHistory sortPaymentHistory={sortPaymentHistory} />
+		</Container>
 	);
 };
