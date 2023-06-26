@@ -19,7 +19,6 @@ import { PasswordResetRequestPage } from './features/auth/pages/PasswordResetReq
 import { PasswordResetPage } from './features/auth/pages/PasswordResetPage';
 import { ROLES } from './config/roles';
 import { UsersList } from './features/users/pages/UsersListPage';
-import { DashboardPage } from './pages/DashboardPage';
 import { AuthRequired } from './components/AuthRequired';
 import { ProfilePage } from './features/users/pages/ProfilePage';
 import { EditProfileForm } from './features/users/pages/EditProfileForm';
@@ -30,6 +29,7 @@ import { CustomerEditForm } from './features/customers/pages/CustomerEditForm';
 import { DocumentsPage } from './features/documents/pages/DocumentsPage';
 import { DocCreateEditForm } from './features/documents/pages/DocCreateEditForm';
 import { SingleDocumentPage } from './features/documents/pages/SingleDocumentPage';
+import { DashboardPage } from './features/dashboard/pages/DashboardPage';
 
 export const App = () => {
 	useTitle('MERN Invoice - Home');
